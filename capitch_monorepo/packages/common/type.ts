@@ -5,6 +5,7 @@ export type question = {
 }
 
 export type participent = {
+    id : string,
     name : string,
     score : number,
     answers : number[],
@@ -14,4 +15,12 @@ export type participent = {
 export type quizz = {
     name : string,
     questions : question[]
+}
+
+export type session = {
+    id : string,
+    name : string,
+    player : participent[],
+    trainer : participent,
+    ongoingQuizz : quizz
 }
