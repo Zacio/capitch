@@ -6,6 +6,9 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
+  "exports": {
+    "./*": "./type.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }

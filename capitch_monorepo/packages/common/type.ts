@@ -6,10 +6,10 @@ export type question = {
 
 export type participent = {
     id : string,
-    name : string,
-    score : number,
-    answers : number[],
-    role : "student" | "trainer"
+    name : string | null,
+    score : number | null,
+    answers : number[] | null,
+    role : "student" | "trainer" | "streamer" | null
 }
 
 export type quizz = {
@@ -17,7 +17,7 @@ export type quizz = {
     questions : question[]
 }
 
-export type session = {
+export type sessionCapitch = {
     id : string,
     name : string,
     player : participent[],

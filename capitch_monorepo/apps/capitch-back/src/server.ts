@@ -1,9 +1,13 @@
 import {initDatabase} from "./database";
 import { Request, Response } from "express";
 import express from "express";
-import { WebSocketServer } from "ws"
+import { WebSocketServer, WebSocket } from "ws"
 import { createServer } from "node:http"
-import { stringify } from "node:querystring";
+import  type {participent} from "@repo/common/type";
+const room = {}
+interface PlayerWebSocket extends WebSocket {
+  playerInfo: participent | null;
+}
 
 initDatabase();
 console.log("test")
@@ -26,13 +30,26 @@ function broadcastClientCount() {
     if (client.readyState === WebSocket.OPEN) {
       client.send(message);
     }
-  });
+  }); 
 }
 
-wss.on("connection", (ws) => {
+wss.on("connection", (ws : PlayerWebSocket) => {
   broadcastClientCount();
-  (ws as any).id = `${Date.now()}_${Math.floor(Math.random() * 10000)}`
-console.log(ws)
+  ws.playerInfo = {
+    id: `${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+    name: null,
+    score: 0,
+    answers: [],
+    role: null,
+  }; 
+console.log(ws.playerInfo.id)
+
+const message = JSON.stringify({type: "newId", newId: ws.playerInfo.id})
+if(ws.readyState === WebSocket.OPEN){
+  ws.send(message)
+}
+
+
   ws.on("close", () => {
     broadcastClientCount();
   });
