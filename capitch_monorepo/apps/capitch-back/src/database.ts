@@ -70,14 +70,5 @@ export async function initDatabase(){
     }
     else{
         console.log('Database already initialized')
-        const quizz = await db.query(`
-            SELECT * FROM QUIZZES
-        `)
-        console.log(quizz)
-
-        const questions = await db.query(`
-            SELECT * FROM QUESTIONS where quizzId = ${quizz[0].id}
-        `)
-        console.log(questions)
     }
 }
