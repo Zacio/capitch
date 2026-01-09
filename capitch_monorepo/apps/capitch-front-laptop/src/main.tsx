@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import WaitingRoom from './pages/waiting-trainer.tsx'
-import ParticipentProvider from './contextProvider.tsx'
+import ParticipentProvider from '@repo/capitch-front/pages/contextProvider'
 
 
 createRoot(document.getElementById('root')!).render(
