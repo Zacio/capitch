@@ -7,9 +7,20 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "dev": "ts-node src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mariadb": "^3.4.5"
+    "@types/express": "^5.0.5",
+    "@types/express-session": "^1.18.2",
+    "@types/node": "^24.10.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mariadb": "^3.4.5",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }

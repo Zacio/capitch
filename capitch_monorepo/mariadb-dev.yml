@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=capitch-db-root-pwd
+      - MARIADB_DATABASE=capitch
+      - MARIADB_USER=Bob
+      - MARIADB_PASSWORD=your_password
+    container_name: capitch-db
