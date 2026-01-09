@@ -15,12 +15,14 @@
     "@types/express": "^5.0.5",
     "@types/express-session": "^1.18.2",
     "@types/node": "^24.10.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "mariadb": "^3.4.5",
     "ws": "^8.19.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/ws": "^8.18.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"

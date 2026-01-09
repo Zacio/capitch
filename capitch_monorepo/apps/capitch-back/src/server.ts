@@ -4,6 +4,7 @@ import express from "express";
 import { WebSocketServer, WebSocket } from "ws"
 import { createServer } from "node:http"
 import  type {participent} from "@repo/common/type";
+import { createApp } from "./createApp";
 const room = {}
 interface PlayerWebSocket extends WebSocket {
   playerInfo: participent | null;
@@ -11,8 +12,7 @@ interface PlayerWebSocket extends WebSocket {
 
 initDatabase();
 console.log("test")
-
-const app = express();
+const app = createApp()
 const PORT = 5001;
 const server = createServer(app)
 

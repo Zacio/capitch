@@ -23,7 +23,7 @@ function MainMenu() {
         setClientCount(data.count);
       }
       else if (data.type === "newId") {
-        console.log("Received new ID from server:", data.newId);
+        console.log("new ID from server:", data.newId);
 
         setParticipent((prev) => {
           if (!prev) {
