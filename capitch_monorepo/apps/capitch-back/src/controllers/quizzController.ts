@@ -31,36 +31,6 @@ export async function getAllQuizzes() {
     return quizzes;
 }
 
-export async function updateQuizz(id: number, quizz: Partial<Omit<Quizz, 'id'>>) {
-    if (quizz.title === undefined) {
-        throw new Error("No fields to update");
-    }
-
-    const result = await db!.execute(
-        `UPDATE QUIZZES SET title = ? WHERE id = ?`,
-        [quizz.title, id]
-    );
-    
-    if (result.affectedRows === 0) {
-        throw new Error("No quizz found with id " + id);
-    }
-    
-    return result.affectedRows;
-}
-
-export async function deleteQuizz(id: number) {
-    const result = await db!.execute(
-        `DELETE FROM QUIZZES WHERE id = ?`,
-        [id]
-    );
-    
-    if (result.affectedRows === 0) {
-        throw new Error("No quizz found with id " + id);
-    }
-    
-    return result.affectedRows;
-}
-
 export async function getQuizzWithQuestions(id: number) {
     const quizz = await getQuizzById(id);
     const questions = await db!.query(

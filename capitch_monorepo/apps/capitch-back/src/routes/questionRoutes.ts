@@ -13,7 +13,6 @@ import {
 export function createQuestionRoutes() {
     const router = Router();
 
-    // Create a new question
     router.post("/", async (req: Request, res: Response) => {
         try {
             const { title, correctAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, quizzId } = req.body;
@@ -37,7 +36,6 @@ export function createQuestionRoutes() {
         }
     });
 
-    // Get all questions
     router.get("/", async (req: Request, res: Response) => {
         try {
             const questions = await getAllQuestions();
@@ -47,10 +45,9 @@ export function createQuestionRoutes() {
         }
     });
 
-    // Get a question by id
     router.get("/:id", async (req: Request, res: Response) => {
         try {
-            const id = parseInt(req.params.id);
+            const id = parseInt(req.params.id!);
             const question = await getQuestionById(id);
             res.json({ question });
         } catch (error) {
@@ -58,10 +55,9 @@ export function createQuestionRoutes() {
         }
     });
 
-    // Get questions by quizz id
     router.get("/quizz/:quizzId", async (req: Request, res: Response) => {
         try {
-            const quizzId = parseInt(req.params.quizzId);
+            const quizzId = parseInt(req.params.quizzId!);
             const questions = await getDbQuizQuestionByquizzId(quizzId);
             res.json({ questions });
         } catch (error) {
@@ -69,7 +65,6 @@ export function createQuestionRoutes() {
         }
     });
 
-    // Get count of questions by quizz id
     router.get("/quizz/:quizzId/count", async (req: Request, res: Response) => {
         try {
             const quizzId = parseInt(req.params.quizzId!);
@@ -80,10 +75,9 @@ export function createQuestionRoutes() {
         }
     });
 
-    // Delete a question by id
     router.delete("/:id", async (req: Request, res: Response) => {
         try {
-            const id = parseInt(req.params.id);
+            const id = parseInt(req.params.id!);
             await deleteQuestion(id);
             res.json({ message: "Question deleted" });
         } catch (error) {
@@ -91,10 +85,9 @@ export function createQuestionRoutes() {
         }
     });
 
-    // Delete all questions by quizz id
     router.delete("/quizz/:quizzId", async (req: Request, res: Response) => {
         try {
-            const quizzId = parseInt(req.params.quizzId);
+            const quizzId = parseInt(req.params.quizzId!);
             const deletedCount = await deleteQuestionsByQuizId(quizzId);
             res.json({ message: "Questions deleted", count: deletedCount });
         } catch (error) {

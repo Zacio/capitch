@@ -51,52 +51,6 @@ export async function getAllQuestions() {
     return questions;
 }
 
-export async function updateQuestion(id: number, question: Partial<Omit<Question, 'id'>>) {
-    const fields: string[] = [];
-    const values: any[] = [];
-
-    if (question.title !== undefined) {
-        fields.push('title = ?');
-        values.push(question.title);
-    }
-    if (question.correctAnswer !== undefined) {
-        fields.push('correctAnswer = ?');
-        values.push(question.correctAnswer);
-    }
-    if (question.incorrectAnswer1 !== undefined) {
-        fields.push('incorrectAnswer1 = ?');
-        values.push(question.incorrectAnswer1);
-    }
-    if (question.incorrectAnswer2 !== undefined) {
-        fields.push('incorrectAnswer2 = ?');
-        values.push(question.incorrectAnswer2);
-    }
-    if (question.incorrectAnswer3 !== undefined) {
-        fields.push('incorrectAnswer3 = ?');
-        values.push(question.incorrectAnswer3);
-    }
-    if (question.quizzId !== undefined) {
-        fields.push('quizzId = ?');
-        values.push(question.quizzId);
-    }
-
-    if (fields.length === 0) {
-        throw new Error("No fields to update");
-    }
-
-    values.push(id);
-    const result = await db!.execute(
-        `UPDATE QUESTIONS SET ${fields.join(', ')} WHERE id = ?`,
-        values
-    );
-    
-    if (result.affectedRows === 0) {
-        throw new Error("No question found with id " + id);
-    }
-    
-    return result.affectedRows;
-}
-
 export async function deleteQuestion(id: number) {
     const result = await db!.execute(
         `DELETE FROM QUESTIONS WHERE id = ?`,

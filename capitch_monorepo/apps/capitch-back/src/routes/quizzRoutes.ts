@@ -11,7 +11,6 @@ import {
 export function createQuizzRoutes() {
     const router = Router();
 
-    // Create a new quizz
     router.post("/", async (req: Request, res: Response) => {
         try {
             const { title } = req.body;
@@ -25,7 +24,6 @@ export function createQuizzRoutes() {
         }
     });
 
-    // Get all quizzes
     router.get("/", async (req: Request, res: Response) => {
         try {
             const quizzes = await getAllQuizzes();
@@ -35,7 +33,6 @@ export function createQuizzRoutes() {
         }
     });
 
-    // Get count of all quizzes
     router.get("/count", async (req: Request, res: Response) => {
         try {
             const count = await countAllQuizzes();
@@ -45,10 +42,9 @@ export function createQuizzRoutes() {
         }
     });
 
-    // Get a quizz by id
     router.get("/:id", async (req: Request, res: Response) => {
         try {
-            const id = parseInt(req.params.id);
+            const id = parseInt(req.params.id!);
             const quizz = await getQuizzById(id);
             res.json({ quizz });
         } catch (error) {
@@ -56,10 +52,9 @@ export function createQuizzRoutes() {
         }
     });
 
-    // Get a quizz with all its questions
     router.get("/:id/questions", async (req: Request, res: Response) => {
         try {
-            const id = parseInt(req.params.id);
+            const id = parseInt(req.params.id!);
             const quizz = await getQuizzWithQuestions(id);
             res.json({ quizz });
         } catch (error) {

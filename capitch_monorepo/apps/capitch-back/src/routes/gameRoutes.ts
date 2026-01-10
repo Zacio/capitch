@@ -1,4 +1,7 @@
 import { Router } from "express";
+import type { Request, Response } from "express";
+import type { quizz } from "@repo/common/type";
+import { db } from "../database.js";
 
 const rooms: { id: string; players: string[] }[] = [];
 
