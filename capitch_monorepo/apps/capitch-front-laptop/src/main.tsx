@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+//import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
@@ -8,7 +8,7 @@ import ParticipentProvider from '@repo/capitch-front/pages/contextProvider'
 
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <>
     <h1>Capitch ?</h1>
     <ParticipentProvider>
       <BrowserRouter>
@@ -19,5 +19,5 @@ createRoot(document.getElementById('root')!).render(
       </BrowserRouter>
     </ParticipentProvider>
 
-  </StrictMode>,
+  </>,
 )
