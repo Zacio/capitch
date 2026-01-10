@@ -1,0 +1,22 @@
+.join-game-container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 16px;
+}
+
+.clear-storage-btn {
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.clear-storage-btn:hover {
+  background-color: #f57c00;
+}

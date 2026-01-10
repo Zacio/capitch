@@ -2,11 +2,12 @@ import useWebSocket from "react-use-websocket";
 import { useState, useEffect } from "react";
 import { useParticipent } from './contextProvider';
 import CapitchButton from '../components/capitch-button';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 function MainMenu() {
   const { participent, setParticipent } = useParticipent();
   const [clientCount, setClientCount] = useState(0);
+  const navigate = useNavigate();
   const { lastMessage } = useWebSocket("ws://localhost:5001");
 
   useEffect(() => {
@@ -45,12 +46,26 @@ function MainMenu() {
       console.error("Failed to parse WebSocket message", e);
     }
   }, [lastMessage]);
+
+  const handlePlayAsTrainer = () => {
+    navigate("/play-form?role=trainer");
+  };
+
+  const handlePlayAsStudent = () => {
+    navigate("/play-form?role=student");
+  };
+
   return (
     <>
       <CapitchButton><Link to="/waiting-room">Screen display</Link></CapitchButton>
-      <CapitchButton>Play</CapitchButton>
-      <div>Connected people: {clientCount}</div>
-
+      
+      <div style={{ display: "grid", gap: "12px", marginTop: "20px" }}>
+        <h3>Play as:</h3>
+        <CapitchButton onClick={handlePlayAsTrainer}>Play as Trainer</CapitchButton>
+        <CapitchButton onClick={handlePlayAsStudent}>Play as Student</CapitchButton>
+      </div>
+      
+      <div style={{ marginTop: "20px" }}>Connected people: {clientCount}</div>
     </>
   )
 }

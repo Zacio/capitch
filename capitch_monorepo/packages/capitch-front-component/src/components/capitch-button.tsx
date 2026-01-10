@@ -1,9 +1,9 @@
 import "./capitch-components.css"
 
-function CapitchButton({ children }: { children: React.ReactNode }) {
+function CapitchButton({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) {
 return(
-    <button>{children}</button>
+    <button onClick={onClick}>{children}</button>
 )
 }
 
-export default CapitchButton 
+export default CapitchButton
